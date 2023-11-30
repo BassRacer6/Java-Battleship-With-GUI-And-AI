@@ -21,13 +21,17 @@ public class MenuJogo extends JFrame{
     Border BorderRaised = BorderFactory.createRaisedSoftBevelBorder();
     Border BorderLowered = BorderFactory.createLoweredSoftBevelBorder();
     Border BorderGreen = BorderFactory.createLineBorder(new Color(50,150,50),4);
-    Color corPadraoClara = new Color(210, 230, 230);
-    Color corPadraoEscura = new Color(190, 210, 210);
+    Color CorPadraoClara = new Color(200, 200, 200);
+    Color CorPadraoEscura = new Color(150, 150, 150);
+    Font FontePadrao = new Font("New Courier", Font.BOLD,16);
 
     JButton[] ButtonsJogador = new JButton[50];
     JButton[] ButtonsMaquina = new JButton[49];
 
-    JLabel LabelInstrucoes = new JLabel();
+    JLabel LabelFeitosMaquina = new JLabel();
+    JLabel LabelFeitosJogador = new JLabel();
+    JLabel LabelRodadaCounter = new JLabel();
+
     JButton ButtonConfirmar = new JButton();
     JButton ButtonReiniciar = new JButton();
 
@@ -58,54 +62,76 @@ public class MenuJogo extends JFrame{
             ButtonsMaquina[i].setBorder(BorderLowered);
             ButtonsMaquina[i].setEnabled(false);
             ButtonsMaquina[i].setBackground(CorDesconhecido);
-            ButtonsMaquina[i].setFont(new Font("New Courier", Font.BOLD,13));
             ButtonsMaquina[i].setFont(new Font("New Courier", Font.BOLD,8));
 		}
         JPanel TabuleiroMaquina = new JPanel();
         TabuleiroMaquina.setLayout(new BorderLayout());
-        TabuleiroMaquina.setBackground(corPadraoClara);
+        TabuleiroMaquina.setBackground(CorPadraoClara);
         TabuleiroMaquina.setBorder(BorderRaised);
         TabuleiroMaquina.setBounds(295,5, 280,280);
         TabuleiroMaquina.add(CoordenadaNumMaquina, BorderLayout.NORTH);
         TabuleiroMaquina.add(CoordenadaLetraMaquina, BorderLayout.WEST);
         TabuleiroMaquina.add(MatrizMaquina, BorderLayout.CENTER);
 
-        LabelInstrucoes.setText("Coloque seus navios.");
-        LabelInstrucoes.setBounds(5,5,180,50);
-        LabelInstrucoes.setOpaque(true);
-        LabelInstrucoes.setBackground(corPadraoClara);
-        LabelInstrucoes.setFont(new Font("New Courier", Font.BOLD,16));
+        LabelFeitosMaquina.setText("Coloque seus navios.");
+        LabelFeitosMaquina.setVerticalAlignment(JLabel.CENTER);
+        LabelFeitosMaquina.setHorizontalAlignment(JLabel.CENTER);
+        LabelFeitosMaquina.setBounds(5,5,180,50);
+        LabelFeitosMaquina.setOpaque(true);
+        LabelFeitosMaquina.setBackground(CorPadraoClara);
+        LabelFeitosMaquina.setBorder(BorderRaised);
+        LabelFeitosMaquina.setFont(FontePadrao);
+
+        LabelFeitosJogador.setBounds(380,5,180,50);
+        LabelFeitosJogador.setVerticalAlignment(JLabel.CENTER);
+        LabelFeitosJogador.setHorizontalAlignment(JLabel.CENTER);
+        LabelFeitosJogador.setOpaque(true);
+        LabelFeitosJogador.setBackground(CorPadraoClara);
+        LabelFeitosJogador.setBorder(BorderRaised);
+        LabelFeitosJogador.setFont(FontePadrao);
+
+        LabelRodadaCounter.setText("Rodada 1");
+        LabelRodadaCounter.setBounds(233,5,100,50);
+        LabelRodadaCounter.setVerticalAlignment(JLabel.CENTER);
+        LabelRodadaCounter.setHorizontalAlignment(JLabel.CENTER);
+        LabelRodadaCounter.setOpaque(true);
+        LabelRodadaCounter.setBackground(CorPadraoClara);
+        LabelRodadaCounter.setBorder(BorderRaised);
+        LabelRodadaCounter.setVisible(false);
+        LabelRodadaCounter.setFont(FontePadrao);
 
         ButtonConfirmar.setText("Confirmar");
-        ButtonConfirmar.setBackground(corPadraoClara);
-        ButtonConfirmar.setBounds(200,5,70,50);
+        ButtonConfirmar.setBackground(CorPadraoClara);
+        ButtonConfirmar.setBounds(210,5,70,50);
         ButtonConfirmar.setFocusable(false);
-        ButtonConfirmar.setBorder(BorderLowered);
+        ButtonConfirmar.setBorder(BorderRaised);
         ButtonConfirmar.setVisible(false);
 
         ButtonReiniciar.setText("Reiniciar");
-        ButtonReiniciar.setBackground(corPadraoClara);
-        ButtonReiniciar.setBounds(280,5,60,50);
+        ButtonReiniciar.setBackground(CorPadraoClara);
+        ButtonReiniciar.setBounds(290,5,60,50);
         ButtonReiniciar.setFocusable(false);
-        ButtonReiniciar.setBorder(BorderLowered);
+        ButtonReiniciar.setBorder(BorderRaised);
         ButtonReiniciar.setVisible(false);
 
-        
-        JPanel PanelInstrucoesColocarNavios = new JPanel();
-        PanelInstrucoesColocarNavios.setOpaque(true);
-        PanelInstrucoesColocarNavios.setBackground(corPadraoEscura);
-        PanelInstrucoesColocarNavios.setBounds(100,5, 355,60);
-        PanelInstrucoesColocarNavios.setLayout(null);
-        PanelInstrucoesColocarNavios.add(LabelInstrucoes);
-        PanelInstrucoesColocarNavios.add(ButtonConfirmar);
-        PanelInstrucoesColocarNavios.add(ButtonReiniciar);
+        JPanel PanelInstrucoesInterno = new JPanel();
+        PanelInstrucoesInterno.setOpaque(true);
+        PanelInstrucoesInterno.setBackground(CorPadraoEscura);
+        PanelInstrucoesInterno.setBorder(BorderLowered);
+        PanelInstrucoesInterno.setBounds(10,5, 565,60);
+        PanelInstrucoesInterno.setLayout(null);
+        PanelInstrucoesInterno.add(LabelFeitosJogador);
+        PanelInstrucoesInterno.add(LabelFeitosMaquina);
+        PanelInstrucoesInterno.add(LabelRodadaCounter);
+        PanelInstrucoesInterno.add(ButtonConfirmar);
+        PanelInstrucoesInterno.add(ButtonReiniciar);
 
-        JPanel PanelInstrucoes = new JPanel();
-        PanelInstrucoes.setBounds(0,0, 600,70);
-        PanelInstrucoes.setOpaque(true);
-        PanelInstrucoes.setBackground(corPadraoClara);
-        PanelInstrucoes.setLayout(null);
-        PanelInstrucoes.add(PanelInstrucoesColocarNavios);
+        JPanel PanelInstrucoesBorda = new JPanel();
+        PanelInstrucoesBorda.setBounds(0,0, 600,70);
+        PanelInstrucoesBorda.setOpaque(true);
+        PanelInstrucoesBorda.setBackground(CorPadraoClara);
+        PanelInstrucoesBorda.setLayout(null);
+        PanelInstrucoesBorda.add(PanelInstrucoesInterno);
 
         JPanel MatrizJogador = new JPanel();
         MatrizJogador.setLayout(new GridLayout(7,7));
@@ -122,7 +148,7 @@ public class MenuJogo extends JFrame{
         JPanel TabuleiroJogador = new JPanel();
         TabuleiroJogador.setLayout(new BorderLayout());
         TabuleiroJogador.setBorder(BorderRaised);
-        TabuleiroJogador.setBackground(corPadraoClara);
+        TabuleiroJogador.setBackground(CorPadraoClara);
         TabuleiroJogador.setBounds(5,5, 280,280);
         TabuleiroJogador.add(CoordenadaNumJogador, BorderLayout.NORTH);
         TabuleiroJogador.add(CoordenadaLetraJogador, BorderLayout.WEST);
@@ -131,7 +157,7 @@ public class MenuJogo extends JFrame{
         JPanel Tabuleiros = new JPanel();
         Tabuleiros.setLayout(null);
         Tabuleiros.setBounds(0,70,585,295);
-        Tabuleiros.setBackground(corPadraoEscura);
+        Tabuleiros.setBackground(CorPadraoEscura);
         Tabuleiros.add(TabuleiroJogador);
         Tabuleiros.add(TabuleiroMaquina);
         
@@ -142,7 +168,7 @@ public class MenuJogo extends JFrame{
         this.setSize(600,400);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
-        this.add(PanelInstrucoes);
+        this.add(PanelInstrucoesBorda);
         this.add(Tabuleiros);
         this.setVisible(true);
     }
