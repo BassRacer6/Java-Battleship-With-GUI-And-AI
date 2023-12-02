@@ -2,15 +2,21 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ColocarNaviosJogador extends MenuJogo{
     Font FonteButtons = new Font("New Courier", Font.BOLD, 14);
+
     Color CorNavioProa = new Color(100, 100, 100);
     Color CorNavioMeiaNau = new Color(70, 70, 70);
     Color CorNavioPopa = new Color(50, 50, 50);
 
-    int l; //Atualizazação coordenada 1 colocada -> 2 colocada
-    int n; ////Atualizazação coordenada 2 colocada -> 3 colocada
+    // IconSubmarinoProa = new ImageIcon("NavioProa.png");
+    //ImageIcon IconSubmarinoMeiaNau = new ImageIcon("NavioMeiaNau.png");
+    //ImageIcon IconSubmarinoPopa = new ImageIcon("NavioPopa.png");
+
+    int PrimeiroBlocoNavio; //Atualizazação coordenada 1 colocada -> 2 colocada
+    int SegundoBlocoNavio; ////Atualizazação coordenada 2 colocada -> 3 colocada
     int k = 1; //Contador do bloco do submarino
     int m = 0; //Contador da quantidade de submarinos
     int CoordPrimeiroNavioProa;
@@ -22,6 +28,11 @@ public class ColocarNaviosJogador extends MenuJogo{
     int CoordTerceiroNavioProa;
     int CoordTerceiroNavioMeiaNau;
     int CoordTerceiroNavioPopa;
+
+    ArrayList<Integer> CoordsPrimeiroNavioJogador = new ArrayList<>();
+    ArrayList<Integer> CoordsSegundoNavioJogador = new ArrayList<>();
+    ArrayList<Integer> CoordsTerceiroNavioJogador = new ArrayList<>();
+    ArrayList<Integer> CoordsTodosNavioJogador = new ArrayList<>();
 
     ColocarNaviosJogador(){
         for (int i = 0; i <= 48; i++) {
@@ -50,6 +61,7 @@ public class ColocarNaviosJogador extends MenuJogo{
                             }
                             ButtonsJogador[i].setText(null);
                             ButtonsJogador[i].setBackground(CorNavioProa);
+                            //ButtonsJogador[i].setIcon(IconSubmarinoProa);
 
                             if (i >= 7 && i <= 41) {
                                 if (i % 7 == 0) {
@@ -111,7 +123,7 @@ public class ColocarNaviosJogador extends MenuJogo{
                                 ButtonsJogador[i - 1].setBorder(BorderGreen);
                                 ButtonsJogador[i - 7].setBorder(BorderGreen);
                             }
-                            l = i;
+                            PrimeiroBlocoNavio = i;
                             if(m > 3){
                             ButtonsJogador[CoordPrimeiroNavioProa].setEnabled(false);
                             ButtonsJogador[CoordPrimeiroNavioMeiaNau].setEnabled(false);
@@ -132,7 +144,7 @@ public class ColocarNaviosJogador extends MenuJogo{
                     }
                     k++;
                 }
-                //Terceira colocada do navio atual
+                // Segunda(?) colocada do navio atual. ->
                 else if (k == 2){
                     for (int i = 0; i <= 48; i++) {
                         if (e1.getSource() == ButtonsJogador[i]){
@@ -141,8 +153,11 @@ public class ColocarNaviosJogador extends MenuJogo{
                                 ButtonsJogador[j].setBorder(BorderLowered);
                             }
                             ButtonsJogador[i].setText(null);
+                            //---------------------------------------------------------------------------------
                             ButtonsJogador[i].setBackground(CorNavioMeiaNau);
-                            if (i == (l - 7)) {
+                            //ButtonsJogador[i].setIcon(IconSubmarinoMeiaNau);
+                            //---------------------------------------------------------------------------------
+                            if (i == (PrimeiroBlocoNavio - 7)) {
                                 if(i >= 0 && i <= 6){
                                 ButtonsJogador[i + 14].setEnabled(true);
                                 ButtonsJogador[i + 14].setBorder(BorderGreen);
@@ -155,7 +170,7 @@ public class ColocarNaviosJogador extends MenuJogo{
                                     ButtonsJogador[i - 7].setBorder(BorderGreen);
                                     ButtonsJogador[i + 14].setBorder(BorderGreen);
                                 }
-                            } else if (i == (l + 7)) {
+                            } else if (i == (PrimeiroBlocoNavio + 7)) {
                                 if(i >= 7 && i <= 13){
                                 ButtonsJogador[i + 7].setEnabled(true);
                                 ButtonsJogador[i + 7].setBorder(BorderGreen);
@@ -168,7 +183,7 @@ public class ColocarNaviosJogador extends MenuJogo{
                                     ButtonsJogador[i + 7].setBorder(BorderGreen);
                                     ButtonsJogador[i - 14].setBorder(BorderGreen);
                                 }
-                            } else if (i == (l - 1)) {
+                            } else if (i == (PrimeiroBlocoNavio - 1)) {
                                 if(i == 0 || i%7 == 0) {
                                     ButtonsJogador[i + 2].setEnabled(true);
                                     ButtonsJogador[i + 2].setBorder(BorderGreen);
@@ -181,7 +196,7 @@ public class ColocarNaviosJogador extends MenuJogo{
                                 ButtonsJogador[i - 1].setBorder(BorderGreen);
                                 ButtonsJogador[i + 2].setBorder(BorderGreen);
                                 }
-                            } else if (i == (l + 1)) {
+                            } else if (i == (PrimeiroBlocoNavio + 1)) {
                                 if((i-1) % 7 == 0 || (i - 1) == 0){ //
                                     ButtonsJogador[i + 1].setEnabled(true);
                                     ButtonsJogador[i + 1].setBorder(BorderGreen);
@@ -195,7 +210,7 @@ public class ColocarNaviosJogador extends MenuJogo{
                                 ButtonsJogador[i - 2].setBorder(BorderGreen);
                                 }
                             }
-                            n = i;
+                            SegundoBlocoNavio = i;
                             if(m > 3){
                             ButtonsJogador[CoordPrimeiroNavioProa].setEnabled(false);
                             ButtonsJogador[CoordPrimeiroNavioMeiaNau].setEnabled(false);
@@ -224,16 +239,22 @@ public class ColocarNaviosJogador extends MenuJogo{
                                 ButtonsJogador[j].setBorder(BorderLowered);
                             }
                             if(m == 3){
-                                CoordPrimeiroNavioProa = l;
-                                CoordPrimeiroNavioMeiaNau= n;
+                                CoordPrimeiroNavioProa = PrimeiroBlocoNavio;
+                                CoordPrimeiroNavioMeiaNau= SegundoBlocoNavio;
                                 CoordPrimeiroNavioPopa= i;
+                                CoordsPrimeiroNavioJogador.add(CoordPrimeiroNavioProa);
+                                CoordsPrimeiroNavioJogador.add(CoordPrimeiroNavioMeiaNau);
+                                CoordsPrimeiroNavioJogador.add(CoordPrimeiroNavioPopa);
                                 ButtonsJogador[CoordPrimeiroNavioProa].setEnabled(false);
                                 ButtonsJogador[CoordPrimeiroNavioMeiaNau].setEnabled(false);
                                 ButtonsJogador[CoordPrimeiroNavioPopa].setEnabled(false);
                             } else if (m == 6){
-                            CoordSegundoNavioProa = l;
-                            CoordSegundoNavioMeiaNau = n;
+                            CoordSegundoNavioProa = PrimeiroBlocoNavio;
+                            CoordSegundoNavioMeiaNau = SegundoBlocoNavio;
                             CoordSegundoNavioPopa = i;
+                            CoordsSegundoNavioJogador.add(CoordSegundoNavioProa);
+                            CoordsSegundoNavioJogador.add(CoordSegundoNavioMeiaNau);
+                            CoordsSegundoNavioJogador.add(CoordSegundoNavioPopa);
                             ButtonsJogador[CoordPrimeiroNavioProa].setEnabled(false);
                             ButtonsJogador[CoordPrimeiroNavioMeiaNau].setEnabled(false);
                             ButtonsJogador[CoordPrimeiroNavioPopa].setEnabled(false);
@@ -241,12 +262,16 @@ public class ColocarNaviosJogador extends MenuJogo{
                             ButtonsJogador[CoordSegundoNavioMeiaNau].setEnabled(false);
                             ButtonsJogador[CoordSegundoNavioPopa].setEnabled(false);
                             } else if(m == 9){
-                                CoordTerceiroNavioProa = l;
-                                CoordTerceiroNavioMeiaNau = n;
+                                CoordTerceiroNavioProa = PrimeiroBlocoNavio;
+                                CoordTerceiroNavioMeiaNau = SegundoBlocoNavio;
                                 CoordTerceiroNavioPopa = i;
+                                CoordsTerceiroNavioJogador.add(CoordTerceiroNavioProa);
+                                CoordsTerceiroNavioJogador.add(CoordTerceiroNavioMeiaNau);
+                                CoordsTerceiroNavioJogador.add(CoordTerceiroNavioPopa);
                             }
                             ButtonsJogador[i].setText(null);
                             ButtonsJogador[i].setBackground(CorNavioPopa);
+                            //ButtonsJogador[i].setIcon(IconSubmarinoPopa);
                         }
                     }
                     k = 1;
@@ -266,10 +291,14 @@ public class ColocarNaviosJogador extends MenuJogo{
             if (e2.getSource() == ButtonReiniciar){
                 for (int j = 0; j <= 48; j++) {
                     ButtonsJogador[j].setEnabled(true);
-                    ButtonsJogador[j].setBackground(CorMar);
+                    //ButtonsJogador[j].setBackground(CorMar);
+                    ButtonsJogador[j].setIcon(IconMar);
                     ButtonsJogador[j].setBorder(BorderLowered);
                 }
-                LabelInstrucoes.setText("Coloque seus navios.");
+                CoordsTodosNavioJogador.removeAll(CoordsPrimeiroNavioJogador);
+                CoordsTodosNavioJogador.removeAll(CoordsSegundoNavioJogador);
+                CoordsTodosNavioJogador.removeAll(CoordsTerceiroNavioJogador);
+                LabelFeitosJogador.setText("Coloque seus navios.");
                 ButtonConfirmar.setVisible(false);
                 ButtonReiniciar.setVisible(false);
                 k = 1;
@@ -289,6 +318,9 @@ public class ColocarNaviosJogador extends MenuJogo{
                         ButtonsJogador[j].removeActionListener(ColocarNaviosJogadorListener);
                     }
                 }
+                CoordsTodosNavioJogador.addAll(CoordsPrimeiroNavioJogador);
+                CoordsTodosNavioJogador.addAll(CoordsSegundoNavioJogador);
+                CoordsTodosNavioJogador.addAll(CoordsTerceiroNavioJogador);
             }
         }
     };
