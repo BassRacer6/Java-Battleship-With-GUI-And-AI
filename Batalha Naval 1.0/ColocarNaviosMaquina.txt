@@ -155,9 +155,9 @@ public class ColocarNaviosMaquina extends ColocarNaviosJogador {
                 PrimeiraColocadaMaquina1 = PrimeiraColocadaMaquina;
                 SegundaColocadaMaquina1 = SegundaColocadaMaquina;
                 TerceiraColocadaMaquina1 = TerceiraColocadaMaquina;
-                ButtonsMaquina[PrimeiraColocadaMaquina1].setBackground(CorNavioProa); ////
-                ButtonsMaquina[SegundaColocadaMaquina1].setBackground(CorNavioMeiaNau); ////
-                ButtonsMaquina[TerceiraColocadaMaquina1].setBackground(CorNavioPopa); ////
+                //ButtonsMaquina[PrimeiraColocadaMaquina1].setBackground(CorNavioProa); ////
+                //ButtonsMaquina[SegundaColocadaMaquina1].setBackground(CorNavioMeiaNau); ////
+                //ButtonsMaquina[TerceiraColocadaMaquina1].setBackground(CorNavioPopa); ////
 
                 NavioCicloCheckMaquina++;
 
@@ -174,9 +174,9 @@ public class ColocarNaviosMaquina extends ColocarNaviosJogador {
                  TerceiraColocadaMaquina1 != PrimeiraColocadaMaquina2 &&
                  TerceiraColocadaMaquina1 != SegundaColocadaMaquina2 &&
                  TerceiraColocadaMaquina1 != TerceiraColocadaMaquina2) {
-                    ButtonsMaquina[PrimeiraColocadaMaquina2].setBackground(CorNavioProa); ////
-                    ButtonsMaquina[SegundaColocadaMaquina2].setBackground(CorNavioMeiaNau); ////
-                    ButtonsMaquina[TerceiraColocadaMaquina2].setBackground(CorNavioPopa); ////
+                    //ButtonsMaquina[PrimeiraColocadaMaquina2].setBackground(CorNavioProa); ////
+                    //ButtonsMaquina[SegundaColocadaMaquina2].setBackground(CorNavioMeiaNau); ////
+                    //ButtonsMaquina[TerceiraColocadaMaquina2].setBackground(CorNavioPopa); ////
                     NavioCicloCheckMaquina ++;
                 } else {
                     for (int j = 0; j <= 48; j++) {
@@ -207,9 +207,9 @@ public class ColocarNaviosMaquina extends ColocarNaviosJogador {
                  TerceiraColocadaMaquina3 != PrimeiraColocadaMaquina2 &&
                  TerceiraColocadaMaquina3 != SegundaColocadaMaquina2 &&
                  TerceiraColocadaMaquina3 != TerceiraColocadaMaquina2){
-                    ButtonsMaquina[PrimeiraColocadaMaquina3].setBackground(CorNavioProa); ////
-                    ButtonsMaquina[SegundaColocadaMaquina3].setBackground(CorNavioMeiaNau); ////
-                    ButtonsMaquina[TerceiraColocadaMaquina3].setBackground(CorNavioPopa); ////
+                    //ButtonsMaquina[PrimeiraColocadaMaquina3].setBackground(CorNavioProa); ////
+                    //ButtonsMaquina[SegundaColocadaMaquina3].setBackground(CorNavioMeiaNau); ////
+                    //ButtonsMaquina[TerceiraColocadaMaquina3].setBackground(CorNavioPopa); ////
                     NavioCicloCheckMaquina++;
                 } else{
                     for (int j = 0; j <= 48; j++) {
