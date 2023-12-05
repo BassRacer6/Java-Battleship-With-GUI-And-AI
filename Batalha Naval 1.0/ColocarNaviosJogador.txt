@@ -337,6 +337,9 @@ public class ColocarNaviosJogador extends MenuJogo{
                     ButtonsJogador[j].setBorder(BorderMatriz);
                 }
                 CoordsTodosNavioJogador.clear();
+                CoordsPrimeiroNavioJogador.clear();
+                CoordsSegundoNavioJogador.clear();
+                CoordsTerceiroNavioJogador.clear();
                 LabelFeitosJogador.setText("Coloque seus navios.");
                 ButtonConfirmar.setVisible(false);
                 ButtonReiniciar.setVisible(false);
