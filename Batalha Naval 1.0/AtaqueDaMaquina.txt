@@ -33,10 +33,10 @@ public class AtaqueDaMaquina extends AtaqueDoJogador {
     int Variavel2ArmazenadaParaCenario2;
 
     ArrayList<Integer> ListaCoordsAcertosMaquina = new ArrayList<>();
-    int NavioJogador1Destruído = 0;
-    int NavioJogador2Destruído = 0;
-    int NavioJogador3Destruído = 0;
-    int QuantNaviosJogadorDestruidos = 0;
+    int NavioJogador1Destruído;
+    int NavioJogador2Destruído;
+    int NavioJogador3Destruído;
+    int QuantNaviosJogadorDestruidos;
 
     //=======================================================================================
     ActionListener ReceberAtaqueListener = new ActionListener() {
@@ -188,9 +188,9 @@ public class AtaqueDaMaquina extends AtaqueDoJogador {
             }
         } while (ListaPossiveisTiros.get(SegundaCoordTiroMaquina) < 0 && CheckTestouTodasAsPossibilidades == 0);
         //---------------------------------------------------------------------------------
-        Lista2Possibilidades.removeAll(Lista2Possibilidades);
-        Lista3Possibilidades.removeAll(Lista3Possibilidades);
-        Lista4Possibilidades.removeAll(Lista4Possibilidades);
+        Lista2Possibilidades.clear();
+        Lista3Possibilidades.clear();
+        Lista4Possibilidades.clear();
         //---------------------------------------------------------------------------------
         if (ListaPossiveisTiros.get(SegundaCoordTiroMaquina) > 0) { // Se a coordenada do tiro ainda não foi usada.
             //---------------------------------------------------------------------------------
@@ -199,25 +199,26 @@ public class AtaqueDaMaquina extends AtaqueDoJogador {
                 ButtonsJogador[SegundaCoordTiroMaquina].setIcon(BlocoAtiradoAcerto);
                 LabelFeitosMaquina.setText("Inimigo acertou!");
                 QuantAcertosMaquina++;
+                AcertosSeguidosMaquina = 2;
                 if (QuantAcertosMaquina == 9) {
                     JOptionPane.showMessageDialog(null, "Você perdeu!", "Derrota", JOptionPane.PLAIN_MESSAGE);
                     menuPrincipal.MenuInicialFrame.setVisible(true);
                     MenuJogoFrame.setVisible(false);
                 }
                 ListaCoordsAcertosMaquina.add(SegundaCoordTiroMaquina);
-                AcertosSeguidosMaquina = 2;
                 if(FaseCenarioEspecial1Ativo == 0){
                     VariavelArmazenadaParaCenario1 = SegundaCoordTiroMaquina;
                 }
                 if(FaseCenarioEspecial2Ativo == 0){
-                Variavel1ArmazenadaParaCenario2 = SegundaCoordTiroMaquina;
-            }
+                    Variavel1ArmazenadaParaCenario2 = SegundaCoordTiroMaquina;
+                }
             } else {
                 ButtonsJogador[SegundaCoordTiroMaquina].setIcon(BlocoAtiradoErro);
                 LabelFeitosMaquina.setText("Inimigo errou!");
             }
         } else { // Se todas as coordenada possíveis para o caso já foram usadas.
             System.out.println("FUDEU BERG");
+            //System.exit(0);
         }
         //---------------------------------------------------------------------------------
         // Aqui tira a TerceiraCoordTiroMaquina das possibilidades de tiro ->
@@ -290,7 +291,7 @@ public class AtaqueDaMaquina extends AtaqueDoJogador {
             }
         } while (ListaPossiveisTiros.get(TerceiraCoordTiroMaquina) < 0 && CheckTestouTodasAsPossibilidades == 0);
         //---------------------------------------------------------------------------------
-        Lista2Possibilidades.removeAll(Lista2Possibilidades);
+        Lista2Possibilidades.clear();
         //---------------------------------------------------------------------------------
         if (ListaPossiveisTiros.get(TerceiraCoordTiroMaquina) > 0) { // Se a coordenada do tiro ainda não foi usada.
             // Aqui checa se o tiro acertou ou errou ->
@@ -298,25 +299,31 @@ public class AtaqueDaMaquina extends AtaqueDoJogador {
                 ButtonsJogador[TerceiraCoordTiroMaquina].setIcon(BlocoAtiradoAcerto);
                 LabelFeitosMaquina.setText("Inimigo acertou!");
                 QuantAcertosMaquina++;
+                ListaCoordsAcertosMaquina.add(TerceiraCoordTiroMaquina);
                 if (QuantAcertosMaquina == 9) {
                     JOptionPane.showMessageDialog(null, "Você perdeu!", "Derrota", JOptionPane.PLAIN_MESSAGE);
                     menuPrincipal.MenuInicialFrame.setVisible(true);
                     MenuJogoFrame.setVisible(false);
                 }
-                ListaCoordsAcertosMaquina.add(TerceiraCoordTiroMaquina);
                 if(FaseCenarioEspecial2Ativo == 0){
-                Variavel2ArmazenadaParaCenario2 = TerceiraCoordTiroMaquina;
-            }
+                    Variavel2ArmazenadaParaCenario2 = TerceiraCoordTiroMaquina;
+                }
                 //---------------------------------------------------------------------------------
                 // Aqui checa se depois da primeria iteração tri-fásica um sumarino é destruído por completo ou não. ->
                 if(ListaCoordsAcertosMaquina.containsAll(CoordsPrimeiroNavioJogador)){
                     NavioJogador1Destruído = 1;
+                } else {
+                    NavioJogador1Destruído = 0;
                 }
                 if(ListaCoordsAcertosMaquina.containsAll(CoordsSegundoNavioJogador)){
                     NavioJogador2Destruído = 1;
+                } else {
+                    NavioJogador2Destruído = 0;
                 }
                 if(ListaCoordsAcertosMaquina.containsAll(CoordsTerceiroNavioJogador)){
                     NavioJogador3Destruído = 1;
+                } else {
+                    NavioJogador3Destruído = 0;
                 }
                 if(NavioJogador1Destruído + NavioJogador2Destruído + NavioJogador3Destruído > QuantNaviosJogadorDestruidos){
                     QuantNaviosJogadorDestruidos = NavioJogador1Destruído + NavioJogador2Destruído + NavioJogador3Destruído;
@@ -393,6 +400,7 @@ public class AtaqueDaMaquina extends AtaqueDoJogador {
         //---------------------------------------------------------------------------------
         // Cada um destes 3 blocos(->) é a Segunda e Terceira fase de tiro para o primeiro, segundo e terceiro acerto, respectivamente.
         if(FaseCenarioEspecial2Ativo == 1){
+            AcertosSeguidosMaquina = 1;
             AtirarSegundoTiroDaSequencia();
             if(AcertosSeguidosMaquina == 2){
                 FaseCenarioEspecial2Ativo = 2;
