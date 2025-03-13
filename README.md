@@ -1,3 +1,3 @@
-# Batalha-Naval
-Passos para jogar: Baixar res.zip na pasta Batalha Naval 1.0, colocar todos os arquivos em
-uma mesma pasta descompactada para que o arquivo .jar possa ler as imagens e então executar o .jar
+# Steps to play:
+Download res.zip into the Batalha Naval 1.0 folder, extract all files into the same folder(ensuring they
+remain uncompressed) so that the .jar file can read the images, and then run the .jar file.
